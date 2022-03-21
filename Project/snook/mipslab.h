@@ -9,44 +9,47 @@
 
 /* Declare display-related functions from mipslabfunc.c */
 
+/* Used for the #define DIRECTIONS*/
 #define UP 0
 #define RIGHT 1
 #define LEFT 2
 #define DOWN 3
+
 #define HEIGHT 32  // 32 pixels (the height of the screen)
 #define LENGTH 128 // 128 pixels (the length of the screen)
 
+/* Declare lab-related functions from mipslabfunc.c */
 void display_init(void);
 void display_string(int line, char *s);
-void display_update(void);
+void display_update(void); // modified display_update() used from labs
 void labinit();
-/* Declare lab-related functions from mipslabfunc.c */
+
 void labwork(void);
 
-/* Declare bitmap array containing font */
-extern const uint8_t const font[128*8];
-/* Declare text buffer for display output */
+/* Declare bitmap array containing font NOT USED*/
+extern const uint8_t const font[128 * 8];
+/* Declare text buffer for display output NOT USED */
 extern char textbuffer[4][16];
 
-/* Declare functions written by students.
-   Note: Since we declare these functions here,
-   students must define their functions with the exact types
-   specified in the laboratory instructions. */
 /* Written as part of asm lab: delay, time2string */
-void time2string( char *, int );
+void time2string(char *, int);
 /* Written as part of i/o lab: getbtns, getsw, enable_interrupt */
 int getbtns(void);
 void tick(unsigned int *timep);
 int nextprime(int inval);
 
-typedef struct Coord // a class for positions
+/**
+ * Our own defined struct for coordinates.
+ * Used for the screen, snake and food.
+ */
+typedef struct Coord
 {
-  int x_pos;
-  int y_pos;
+   int x_pos;
+   int y_pos;
 } Coord;
 
-extern uint8_t pixels[32][128];
-extern Coord snakeBody_pos[200];
+extern uint8_t pixels[32][128];  // All pixels(coordinates) for the screen
+extern Coord snakeBody_pos[200]; // The coordinates for the snake
 
 void clear_screen();
 void start_values();
